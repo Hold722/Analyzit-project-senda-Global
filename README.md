@@ -1,0 +1,1 @@
+# Analyzit project senda Global
