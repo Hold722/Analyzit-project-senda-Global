@@ -1,97 +1,91 @@
 using UnityEngine;
-using UnityEngine.AI; // Required for NavMeshAgent
+using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class EnemyPatrol : MonoBehaviour
 {
-
-    [Header("Movement & Vision")]
-    public float speed = 25f;
+    [Header("Referencias")]
     public Transform player;
-    public float visionRadius = 50f;
+    public NavMeshAgent navMeshAgent;
 
-    [Header("Patrol Route")]
+    [Header("Puntos de Patrullaje")]
     public Transform[] patrolPoints;
     private int currentPointIndex = 0;
 
-    [Header("Idle Wait Settings")]
-    public float waitTime = 3f;
-    private float waitTimer;
-    private bool isWaiting = false;
+    [Header("Configuración de Visión")]
+    public float visionRadius = 8f;          // Distancia máxima a la que puede ver
+    [Range(0, 360)]
+    public float visionAngle = 90f;          // Ángulo del cono de visión (ej. 90 grados al frente)
 
-    [Header("Entrega de Bocadillos & Transici�n")]
-    public Transform puntoSeguroOrilla; // Reaparici�n si te atrapa sin los 4 bocadillos
-    public GameObject panelNegroUI;     // Pantalla a negro
-    public string nombreNivel2 = "Nivel2_Amazonas";
-    private bool entregado = false;
-
-    private NavMeshAgent agent;
-    private Animator anim;
+    [Header("Configuración de Movimiento")]
+    public float patrolSpeed = 2f;
+    public float chaseSpeed = 4.5f;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        // Buscar componentes automáticamente si no están asignados
+        if (navMeshAgent == null)
+            navMeshAgent = GetComponent<NavMeshAgent>();
 
-        if (agent != null)
+        if (player == null)
         {
-            agent.speed = speed;
-            agent.angularSpeed = 120f;
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+                player = playerObj.transform;
         }
 
-        MoveToNextPoint();
+        // Iniciar el patrullaje si hay puntos configurados
+        if (patrolPoints.Length > 0)
+        {
+            MoveToNextPoint();
+        }
     }
 
     void Update()
     {
-        if (player == null || agent == null || entregado) return;
+        if (navMeshAgent == null) return;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
-        // 1. DETECCI�N DEL JUGADOR
-        if (distanceToPlayer <= visionRadius)
+        // Comprobar si el jugador está en el campo de visión
+        if (CanSeePlayer())
         {
-            PlayerInventory inventario = player.GetComponent<PlayerInventory>();
-
-            // CASO A: YA TIENE LOS 4 BOCADILLOS -> Se calma y activa el viaje
-            if (inventario != null && inventario.SandwichCount >= 4)
-            {
-                CalmarMohanYViajar();
-                return;
-            }
-
-            // CASO B: NO TIENE LOS 4 BOCADILLOS -> Lo persigue
-            isWaiting = false;
-            agent.SetDestination(player.position);
-
-            if (anim != null) anim.Play("Run");
+            navMeshAgent.speed = chaseSpeed;
+            navMeshAgent.destination = player.position;
+            return; // Lo persigue y frena temporalmente el patrullaje
         }
-        else
-        {
-            // STATE: PATROL
-            HandlePatrolLogic();
-        }
+
+        // Si no lo ve, continúa patrullando a velocidad normal
+        navMeshAgent.speed = patrolSpeed;
+        PatrolLogic();
     }
 
-    void HandlePatrolLogic()
+    bool CanSeePlayer()
     {
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && !isWaiting)
+        if (player == null) return false;
+
+        // 1. Verificar la distancia entre el enemigo y el jugador
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer <= visionRadius)
         {
-            isWaiting = true;
-            waitTimer = waitTime;
+            // 2. Verificar el ángulo (que el jugador esté dentro del cono frontal de visión)
+            Vector3 directionToPlayer = (player.position - transform.position).normalized;
+            float angleBetweenEnemyAndPlayer = Vector3.Angle(transform.forward, directionToPlayer);
 
-            if (anim != null) anim.Play("Idle");
-        }
-
-        if (isWaiting)
-        {
-            waitTimer -= Time.deltaTime;
-
-            // CORREGIDO: Ahora s� espera hasta llegar a 0
-            if (waitTimer <= 0)
+            // Si el ángulo es menor a la mitad del cono total, significa que está al frente
+            if (angleBetweenEnemyAndPlayer < visionAngle / 2f)
             {
-                isWaiting = false;
-                MoveToNextPoint();
+                return true;
             }
+        }
+        return false;
+    }
+
+    void PatrolLogic()
+    {
+        if (patrolPoints.Length == 0) return;
+
+        // Comprobar si llegó al punto de patrulla actual
+        if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + 0.5f)
+        {
+            MoveToNextPoint();
         }
     }
 
@@ -99,56 +93,23 @@ public class Enemy : MonoBehaviour
     {
         if (patrolPoints.Length == 0) return;
 
-        agent.SetDestination(patrolPoints[currentPointIndex].position);
-        if (anim != null) anim.Play("Walk");
-
+        navMeshAgent.destination = patrolPoints[currentPointIndex].position;
         currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
     }
 
-    // SI TE TOCA SINO TIENES LOS BOCADILLOS
-    private void OnTriggerEnter(Collider other)
+    // Dibuja el radio y el cono de visión en la escena de Unity para ayudarte a calibrarlo
+    void OnDrawGizmosSelected()
     {
-        if (other.CompareTag("Player") && !entregado)
-        {
-         PlayerInventory inventario = other.GetComponent<PlayerInventory>();
+        // Dibuja la esfera del radio total de visión (Amarillo)
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, visionRadius);
 
-            if (inventario == null || inventario.SandwichCount < 4)
-            {
-                // Te regresa a la orilla
-                other.transform.position = puntoSeguroOrilla.position;
-                agent.ResetPath();
-                MoveToNextPoint();
-            }
-        }
-    }
+        // Calcula las líneas del cono de visión (Rojo)
+        Vector3 leftBoundary = Quaternion.Euler(0, -visionAngle / 2f, 0) * transform.forward * visionRadius;
+        Vector3 rightBoundary = Quaternion.Euler(0, visionAngle / 2f, 0) * transform.forward * visionRadius;
 
-    // L�GICA DE DETENCI�N Y CAMBIO DE NIVEL
-    void CalmarMohanYViajar()
-    {
-        entregado = true;
-        agent.isStopped = true; // Detiene el NavMeshAgent por completo
-        if (anim != null) anim.Play("Idle");
-
-        Invoke("ActivarPantallaNegra", 1.5f);
-    }
-
-    void ActivarPantallaNegra()
-    {
-        if (panelNegroUI != null) panelNegroUI.SetActive(true);
-        Invoke("CargarNivel2", 2.0f);
-    }
-
-    void LoadLevel2()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(nombreNivel2);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
         Gizmos.color = Color.red;
-        Matrix4x4 oldMatrix = Gizmos.matrix;
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, Quaternion.identity, Vector3.one);
-        Gizmos.DrawWireSphere(Vector3.zero, visionRadius);
-        Gizmos.matrix = oldMatrix;
+        Gizmos.DrawLine(transform.position, transform.position + leftBoundary);
+        Gizmos.DrawLine(transform.position, transform.position + rightBoundary);
     }
 }

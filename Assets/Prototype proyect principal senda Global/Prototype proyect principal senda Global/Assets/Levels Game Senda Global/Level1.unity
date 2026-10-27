@@ -257,6 +257,7 @@ Terrain:
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
+  m_EnableHeightmapLODFrustumCulling: 1
   m_TreeMotionVectorModeOverride: 3
 --- !u!4 &17813539
 Transform:
@@ -301,7 +302,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.6333333
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 98d61c135cfba184ba939f39df5dfaf8, type: 2}
   m_BuildHeightMesh: 0
@@ -11892,26 +11893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowDebugText: 0
-  ShowCameraFrustum: 1
-  IgnoreTimeScale: 0
-  WorldUpOverride: {fileID: 0}
-  ChannelMask: -1
-  UpdateMethod: 2
-  BlendUpdateMethod: 1
-  LensModeOverride:
-    Enabled: 0
-    DefaultMode: 2
-  DefaultBlend:
-    Style: 1
-    Time: 2
-    CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  CustomBlends: {fileID: 0}
 --- !u!114 &330585550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11971,7 +11952,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -11994,7 +11976,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 25.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13698,7 +13680,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.6333333
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: a5c4a0a2f390dc7488cfac24230f07e9, type: 2}
   m_BuildHeightMesh: 0
@@ -13761,6 +13743,7 @@ Terrain:
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
+  m_EnableHeightmapLODFrustumCulling: 1
   m_TreeMotionVectorModeOverride: 3
 --- !u!4 &714183211
 Transform:
@@ -29610,7 +29593,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -35787,7 +35771,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -36906,7 +36891,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1336294782}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Speed: 3.5
   m_Acceleration: 4.5
   avoidancePriority: 20
@@ -36915,10 +36900,10 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.32
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &1336294785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36931,17 +36916,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc14b744ee9ab74985912ee29afbf0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
   player: {fileID: 784900417}
-  visionRadius: 50
+  navMeshAgent: {fileID: 1336294784}
   patrolPoints:
   - {fileID: 325523976}
   - {fileID: 1044465249}
   - {fileID: 814875659}
-  waitTime: 3
-  puntoSeguroOrilla: {fileID: 0}
-  panelNegroUI: {fileID: 0}
-  nombreNivel2: Nivel2_Amazonas
+  visionRadius: 13.75
+  visionAngle: 90
+  patrolSpeed: 2
+  chaseSpeed: 4.5
 --- !u!65 &1336294786
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49175,7 +49159,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -49295,14 +49280,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc14b744ee9ab74985912ee29afbf0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
-  player: {fileID: 784900417}
-  visionRadius: 40
+  player: {fileID: 0}
+  navMeshAgent: {fileID: 0}
   patrolPoints: []
-  waitTime: 3
-  puntoSeguroOrilla: {fileID: 0}
-  panelNegroUI: {fileID: 0}
-  nombreNivel2: Nivel2_Amazonas
+  visionRadius: 8
+  visionAngle: 90
+  patrolSpeed: 2
+  chaseSpeed: 4.5
 --- !u!114 &1832422764
 MonoBehaviour:
   m_ObjectHideFlags: 0

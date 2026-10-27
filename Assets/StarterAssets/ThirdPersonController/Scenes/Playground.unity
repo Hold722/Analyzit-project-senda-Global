@@ -247,7 +247,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -6978,10 +6979,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57824e31f27274541a549b075e327c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 5
-  rotationSpeed: 70
+  velocitywalk: 5
+  velocityrun: 4.5
+  velocityrotation: 150
   jumpHeight: 2.5
   gravity: -9.81
+  controller: {fileID: 0}
 --- !u!1 &1193519946
 GameObject:
   m_ObjectHideFlags: 0
@@ -22562,7 +22565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24d91b38edc0384e953475776e51d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HatsText: {fileID: 0}
+  Sandwichtext: {fileID: 0}
   CoinsText: {fileID: 0}
   Redwarpanel: {fileID: 0}
 --- !u!1 &1463685941
@@ -22634,7 +22637,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -32993,7 +32997,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -43476,7 +43481,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
