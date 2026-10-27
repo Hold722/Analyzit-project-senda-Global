@@ -1,34 +1,21 @@
 using UnityEngine;
 
-public class FishCollectible : MonoBehaviour
+public class Collectible : MonoBehaviour
 {
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
-      if (other.CompareTag("Player"))
-      {
-            //Here you cant call the method to add the collectible to the GameManager
-            Debug.Log("¡Pez recolectado!");
-          Destroy(gameObject); // Destroy the object Collectible 
-        }
-      GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if (gameManager != null)
+        // Verificar si el que choca es el Jugador
+        if (other.CompareTag("Player"))
         {
-            gameManager.AddCollectible(); //Call the method to add the collectible to the GameManager
-            Debug.Log("Peces recolectados: ");
+            // Buscar el GameManager en la escena y sumar el coleccionable
+            GameManagerPiraña gameManager = FindObjectOfType<GameManagerPiraña>();
+            if (gameManager != null)
+            {
+                gameManager.Addcollectible();
+            }
 
-            //Destroy the fish collectible after collection
+            // Destruir este objeto coleccionable (el pez)
             Destroy(gameObject);
         }
-        else
-        {
-            Debug.LogError("GameManager no Found in the Scene.");
-        }
-
-            // Update is called once per frame
-            void Update()
-            {
-
-            }   }
+    }
 }
