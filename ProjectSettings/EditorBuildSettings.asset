@@ -6,11 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MenuOpciones.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Prototype proyect principal senda Global/Prototype proyect principal
+      senda Global/Assets/Levels Game Senda Global/IntroScene.unity
+    guid: 98cc0a6a3d121ce48991d03e3be31a95
   - enabled: 1
     path: Assets/Prototype proyect principal senda Global/Prototype proyect principal
-      senda Global/Assets/Levels Game Senda Global/Level1.unity
+      senda Global/Assets/Scene Menu Usuario/Menu.unity
+    guid: f0b70cb7db645ef47b42eff135f948a9
+  - enabled: 1
+    path: Assets/Level1.unity
     guid: 54ada9bd803809e41979711549d273e5
   - enabled: 1
     path: Assets/Prototype proyect principal senda Global/Prototype proyect principal
