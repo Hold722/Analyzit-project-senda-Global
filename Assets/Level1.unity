@@ -16,23 +16,23 @@ RenderSettings:
   serializedVersion: 10
   m_Fog: 1
   m_FogColor: {r: 0.3886792, g: 0.3886792, b: 0.3886792, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.02
+  m_FogMode: 2
+  m_FogDensity: 0.026
   m_LinearFogStart: 0.43
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.93962264, g: 0.93962264, b: 0.93962264, a: 1}
-  m_AmbientEquatorColor: {r: 0.2905661, g: 0.2905661, b: 0.2905661, a: 1}
+  m_AmbientSkyColor: {r: 0.096197866, g: 0.86415094, b: 0.7313278, a: 1}
+  m_AmbientEquatorColor: {r: 0.3735848, g: 0.373476, b: 0.35173362, a: 1}
   m_AmbientGroundColor: {r: 0.10943389, g: 0.10798854, b: 0.10798854, a: 1}
   m_AmbientIntensity: 1.77
   m_AmbientMode: 1
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 0.93182325, g: 1, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: e523c896238589445ae28370258d26c6, type: 2}
   m_HaloStrength: 0.678
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 1
+  m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 0
@@ -5378,7 +5378,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.06, y: -0.6, z: 7.45}
-  m_LocalScale: {x: 4.7993636, y: 2.4420013, z: 2.369237}
+  m_LocalScale: {x: 4.7993636, y: 3.96581, z: 2.369237}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -11841,11 +11841,10 @@ GameObject:
   m_Component:
   - component: {fileID: 330585546}
   - component: {fileID: 330585545}
-  - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
-  - component: {fileID: 330585549}
   - component: {fileID: 330585550}
+  - component: {fileID: 330585551}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11853,14 +11852,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &330585544
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -11985,18 +11976,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 784900417}
   smoothSpeed: 0.125
---- !u!114 &330585549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &330585550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12013,6 +11992,103 @@ MonoBehaviour:
   distance: 3.03
   height: 0.5
   rotationSpeed: 120
+--- !u!82 &330585551
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 573b907377002544ebef0ebb1be97960, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &330820494
 GameObject:
   m_ObjectHideFlags: 0
@@ -12080,7 +12156,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 44.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12718,7 +12794,6 @@ GameObject:
   - component: {fileID: 410087041}
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
-  - component: {fileID: 410087043}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -12736,20 +12811,20 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.8584906, g: 0.71610075, b: 0, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.86415094, g: 0.71165377, b: 0, a: 1}
+  m_Intensity: 4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -12776,11 +12851,11 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5088
+  m_ColorTemperature: 6500
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -12799,13 +12874,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: -0.35796162, y: -0.609556, z: 0.6253787, w: 0.33046386}
+  m_LocalPosition: {x: 0, y: 12.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 31.723, y: 1350.041, z: 92.592}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12828,19 +12903,7 @@ MonoBehaviour:
   m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
---- !u!114 &410087043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410087039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a164bdb9c079c94c93b0ebd8ab7feae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_SoftShadowQuality: 2
 --- !u!1 &426333085
 GameObject:
   m_ObjectHideFlags: 0
@@ -14067,7 +14130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714183207}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -19297,18 +19360,6 @@ MonoBehaviour:
   runSpeed: 15
   jumpforce: 1.5
   groundistance: 0.2
---- !u!114 &784900425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 784900414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61b50da730e0c8b4cbe1807651f0dd36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &798468296
 GameObject:
   m_ObjectHideFlags: 0
@@ -24569,7 +24620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsGlobal: 0
-  priority: -0.14
+  priority: 0.86
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: ab09877e2e707104187f6f83e2f62510, type: 2}
@@ -36506,14 +36557,14 @@ RectTransform:
   m_GameObject: {fileID: 1160323512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8920958, y: 1.0223335, z: 2.5}
+  m_LocalScale: {x: 0.99905807, y: 1.276254, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1440850957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -91, y: -143}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 659, y: -83.2}
   m_SizeDelta: {x: 168, y: -750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1160323514
@@ -36546,8 +36597,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293059298
-  m_fontColor: {r: 0.8867924, g: 0.8867924, b: 0.8867924, a: 1}
+    rgba: 4278255588
+  m_fontColor: {r: 0.8939409, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -38409,9 +38460,9 @@ Light:
   m_GameObject: {fileID: 1487219986}
   m_Enabled: 1
   serializedVersion: 11
-  m_Type: 0
-  m_Color: {r: 0, g: 1, b: 0.9616327, a: 1}
-  m_Intensity: 5
+  m_Type: 2
+  m_Color: {r: 1, g: 0, b: 0.44996452, a: 1}
+  m_Intensity: 3.09
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -38454,8 +38505,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 5542
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -38474,7 +38525,7 @@ Transform:
   m_GameObject: {fileID: 1487219986}
   serializedVersion: 2
   m_LocalRotation: {x: 0.37365255, y: -0.48844007, z: 0.60031974, w: 0.5112986}
-  m_LocalPosition: {x: 0.073269024, y: 1.787997, z: -0.3095601}
+  m_LocalPosition: {x: -0.222, y: 1.359, z: 0.259}
   m_LocalScale: {x: 0.6666666, y: 0.6666667, z: 0.66666675}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38851,8 +38902,8 @@ Transform:
   m_GameObject: {fileID: 1544528809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.21, y: 0.06, z: 17.18}
-  m_LocalScale: {x: 5.4, y: 0.18, z: 4.7}
+  m_LocalPosition: {x: -0.21, y: 0.021696, z: 17.18}
+  m_LocalScale: {x: 16.48404, y: 0.1629, z: 4.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -49870,9 +49921,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc14b744ee9ab74985912ee29afbf0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  navMeshAgent: {fileID: 0}
-  patrolPoints: []
+  player: {fileID: 784900417}
+  navMeshAgent: {fileID: 1832422762}
+  patrolPoints:
+  - {fileID: 2090993766}
+  - {fileID: 364170281}
+  - {fileID: 1347588267}
   visionRadius: 8
   visionAngle: 90
   patrolSpeed: 2
@@ -50774,15 +50828,15 @@ RectTransform:
   m_GameObject: {fileID: 1913915242}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -116.4}
-  m_LocalScale: {x: 0.45427758, y: 0.17526942, z: 1}
+  m_LocalScale: {x: 0.36717078, y: 0.20465215, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1440850957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -2, y: -251.6}
-  m_SizeDelta: {x: 856, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -2, y: -216.6}
+  m_SizeDelta: {x: -316, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1913915244
 MonoBehaviour:
@@ -50797,7 +50851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 0.78039217}
+  m_Color: {r: 0.44313726, g: 0.011764706, b: 0.2792809, a: 0.8}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -51244,9 +51298,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c38c4a7e26522b74ea7ade84aafcc86c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 784900424}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c38c4a7e26522b74ea7ade84aafcc86c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 784900425}
   m_SourcePrefab: {fileID: 100100000, guid: c38c4a7e26522b74ea7ade84aafcc86c, type: 3}
 --- !u!1 &1959830093
 GameObject:
@@ -51497,11 +51548,11 @@ MonoBehaviour:
   dialogues:
   - 'Presiona "E" para Interactuar '
   - "\xA1Un esp\xEDritu de la selva! Pens\xE9 que ya nadie nos escuchar\xEDa...\""
-  - "Los abuelos dicen que el Moh\xE1n sufre en el olvido. \xA1Por eso todo perdi\xF3
-    su luz!"
+  - "Los abuelos dicen que el Moh\xE1n sufre en el olvido y por eso todo perdi\xF3
+    su luz."
   - Presiona "E" Para Continuar
-  - "Por favor, trae los Bocadillos Vele\xF1os. \xA1Con su dulzura calmaremos al
-    Moh\xE1n!"
+  - "\xA1Busca a Pedro cruzando el r\xEDo! \xC9l te dar\xE1 informaci\xF3n sobre
+    los bocadillos."
 --- !u!4 &1969218774
 Transform:
   m_ObjectHideFlags: 0
@@ -51551,10 +51602,10 @@ MonoBehaviour:
   dialogues:
   - '!Cuidado al cruzar! el Mohan esta de un mal genio terrible y bloqueo el paso
     por el rio'
-  - "Dicen que lo \xFAnico que lo calma es recordar las tradiciones de nuestra tierra.
-    Necesitamos 6 Bele\xF1os tradicionales."
-  - "B\xFAscalos por la orilla. Cuando los tengas todos, cruza este puente con confianza
-    y entr\xE9gaselos."
+  - "Los abuelos dicen que el Moh\xE1n sufre en el olvido y por eso todo perdi\xF3
+    su luz."
+  - "Busca a Pedro cruzando el r\xEDo, \xE9l sabe c\xF3mo prepararlos. \xA1Necesitamos
+    los bocadillos vele\xF1os para calmar su furia con su dulzura!"
 --- !u!4 &1987163694
 Transform:
   m_ObjectHideFlags: 0
@@ -62048,6 +62099,10 @@ PrefabInstance:
     - target: {fileID: 1891363657335870392, guid: 630121f496db59d4da31b90dd3a47c22, type: 3}
       propertyPath: rotationSpeed
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2169505712429879778, guid: 630121f496db59d4da31b90dd3a47c22, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.48
       objectReference: {fileID: 0}
     - target: {fileID: 2369580671554326252, guid: 630121f496db59d4da31b90dd3a47c22, type: 3}
       propertyPath: rotationSpeed
