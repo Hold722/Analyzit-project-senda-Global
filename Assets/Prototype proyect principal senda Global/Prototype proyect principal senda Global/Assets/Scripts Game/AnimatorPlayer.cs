@@ -7,6 +7,7 @@ public class AnimatorPlayer : MonoBehaviour
     public float walkSpeed = 0.5f;
     public float runSpeed = 1.5f;
     public float jumpForce = 5f;
+
     private Rigidbody rb;
 
     void Start()
@@ -16,42 +17,34 @@ public class AnimatorPlayer : MonoBehaviour
 
     void Update()
     {
-        // 1. SALTO INDEPENDIENTE: Funciona estando quieto, caminando o corriendo
+        // 1. SALTO CON TRIGGER (Aquí mandamos a llamar la función)
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump();
+            Jump(); // <--- Línea donde se ejecuta la función de salto
         }
 
-        // 2. MOVIMIENTO (Correr, Caminar o Quieto)
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
+        // 2. DETECCIÓN DE MOVIMIENTO
+        bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
+        bool isRunning = Input.GetKey(KeyCode.LeftShift) && isMoving;
+
+        // 3. ASIGNACIÓN DE VELOCIDAD AL ANIMATOR
+        if (isRunning)
         {
-            Run();
+            animator.SetFloat("Speed", runSpeed);
         }
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        else if (isMoving)
         {
-            WalkSpeed();
+            animator.SetFloat("Speed", walkSpeed);
         }
         else
         {
-            Idle();
+            animator.SetFloat("Speed", 0f);
         }
     }
 
-    void Idle()
-    {
-        animator.SetFloat("Speed", 0f);
-    }
-
-    void WalkSpeed()
-    {
-        animator.SetFloat("Speed", walkSpeed);
-    }
-
-    void Run()
-    {
-        animator.SetFloat("Speed", 1f);
-    }
-
+    // ==========================================
+    // PON LA FUNCIÓN DE SALTO AQUÍ (Al final del script)
+    // ==========================================
     void Jump()
     {
         animator.SetTrigger("Jump");

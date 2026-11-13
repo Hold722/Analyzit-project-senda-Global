@@ -4,9 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public TMP_Text Sandwichtext;
+    public TMP_Text Bocadillos;
     public TMP_Text CoinsText;
-
 
     private int SandwichCounts = 0;
     private int monedas = 0;
@@ -15,19 +14,30 @@ public class GameManager : MonoBehaviour
 
     private bool recompensaDada = false;
 
+    void Start()
+    {
+        if (Redwarpanel != null)
+            Redwarpanel.SetActive(false);
+
+        recompensaDada = false;
+        ActualizarUI(); // Para que muestre 0/8 desde el inicio
+    }
+
     public void AddCollectible()
     {
         SandwichCounts++;
 
-        Debug.Log("Sándwiches recogidos: " + SandwichCounts);
+        Debug.Log("Bocadillos recogidos: " + SandwichCounts);
 
-        Sandwichtext.text = "Sándwiches\n" + SandwichCounts + "/8";
+        ActualizarUI();
+
         if (SandwichCounts >= 8 && !recompensaDada)
         {
             Debug.Log("ENTRO AL IF DE RECOMPENSA");
 
             monedas += 50;
-            CoinsText.text = monedas.ToString();
+            if (CoinsText != null)
+                CoinsText.text = monedas.ToString();
 
             recompensaDada = true;
 
@@ -35,14 +45,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void ActualizarUI()
     {
-        Redwarpanel.SetActive(false);
-        recompensaDada = false;
+        if (Bocadillos != null)
+        {
+            // Espacios limpios y formato ordenado
+            Bocadillos.text = SandwichCounts + " / 8";
+        }
     }
+
     void CargarSiguienteNivel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
 }

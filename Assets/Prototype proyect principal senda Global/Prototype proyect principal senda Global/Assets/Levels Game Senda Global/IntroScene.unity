@@ -277,7 +277,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.05
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -380,14 +380,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textoUI: {fileID: 682021734}
   lineasTexto:
-  - "Bit\xE1cora de viaje: Adentr\xE1ndonos en lo desconocido.\"\n"
-  - "\"Lejos del ruido de la ciudad, los caminos de nuestra regi\xF3n esconden secretos
-    que pocos se detienen a escuchar"
-  - Camina con calma, observa los detalles y escucha lo que los habitantes tienen
-    para decirte.
-  - "Comienza tu expedici\xF3n en Sua T\xEDa."
-  velocidadEscritura: 0.04
-  tiempoEsperaEntreLineas: 2.5
+  - "Has llegado a las orillas del gran r\xEDo Magdalena y la Amazonas"
+  - "tu misi\xF3n es recorrer estos territorios,"
+  - Habla con los habitantes y recolecta los objetos tradicionales.
+  velocidadEscritura: 0.05
+  tiempoEsperaEntreLineas: 2
   nombrePrimerNivel: Menu
 --- !u!4 &815627836
 Transform:
