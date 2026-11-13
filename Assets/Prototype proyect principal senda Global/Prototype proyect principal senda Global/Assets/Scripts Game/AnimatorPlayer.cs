@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class AnimatorPlayer : MonoBehaviour
@@ -7,53 +6,35 @@ public class AnimatorPlayer : MonoBehaviour
 
     public float walkSpeed = 0.5f;
     public float runSpeed = 1.5f;
-    public float jumpforce = 2.5f;
-    public float groundistance = 0.2f;
+    public float jumpForce = 5f;
+    private Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
-        // Run Settings 
-        if (Input.GetKey(KeyCode.LeftShift) &&
-            Input.GetKey(KeyCode.W))
+        // 1. SALTO INDEPENDIENTE: Funciona estando quieto, caminando o corriendo
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+
+        // 2. MOVIMIENTO (Correr, Caminar o Quieto)
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
         {
             Run();
         }
-        //Jump settings
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetTrigger("Jump");
-        }
-     
-
-
-        // Walk Settings
-        else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             WalkSpeed();
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            WalkSpeed();
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            WalkSpeed();
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            WalkSpeed();
-        }
-
-        // IDLE
         else
         {
             Idle();
         }
-        void jump()
-        {
-            animator.SetTrigger("Jump");
-        }
-
     }
 
     void Idle()
@@ -71,7 +52,13 @@ public class AnimatorPlayer : MonoBehaviour
         animator.SetFloat("Speed", 1f);
     }
 
+    void Jump()
+    {
+        animator.SetTrigger("Jump");
 
-
-
+        if (rb != null)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
 }
