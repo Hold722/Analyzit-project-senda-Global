@@ -10,6 +10,14 @@ public class AnimatorPlayer : MonoBehaviour
 
     private Rigidbody rb;
 
+    [Header("Sonido Pasos")]
+    public AudioSource audioSource;
+    public float tiempoEntrePasos = 0.5f;
+    private float timerPasos;
+
+    [Header("Sonido Salto")]
+    public AudioSource saltoAudioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -17,37 +25,58 @@ public class AnimatorPlayer : MonoBehaviour
 
     void Update()
     {
-        // 1. SALTO CON TRIGGER (Aquí mandamos a llamar la función)
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump(); // <--- Línea donde se ejecuta la función de salto
+            Jump();
         }
 
-        // 2. DETECCIÓN DE MOVIMIENTO
         bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
         bool isRunning = Input.GetKey(KeyCode.LeftShift) && isMoving;
 
-        // 3. ASIGNACIÓN DE VELOCIDAD AL ANIMATOR
         if (isRunning)
         {
             animator.SetFloat("Speed", runSpeed);
+            ReproducirPasos(tiempoEntrePasos * 0.65f);
         }
         else if (isMoving)
         {
             animator.SetFloat("Speed", walkSpeed);
+            ReproducirPasos(tiempoEntrePasos);
         }
         else
         {
             animator.SetFloat("Speed", 0f);
+            timerPasos = 0f;
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
     }
 
-    // ==========================================
-    // PON LA FUNCIÓN DE SALTO AQUÍ (Al final del script)
-    // ==========================================
+    void ReproducirPasos(float intervalo)
+    {
+        if (audioSource == null) return;
+
+        timerPasos -= Time.deltaTime;
+        if (timerPasos <= 0f)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+            timerPasos = intervalo;
+        }
+    }
+
     void Jump()
     {
         animator.SetTrigger("Jump");
+
+        if (saltoAudioSource != null)
+        {
+            saltoAudioSource.Play();
+        }
 
         if (rb != null)
         {

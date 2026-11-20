@@ -45,6 +45,6 @@ public class Codigo_Pausa : MonoBehaviour
     public void IrAlMenuPrincipal(string nombreEscenaMenu)
     {
         Time.timeScale = 1; // ¡Obligatorio! Descongela el tiempo antes de cambiar de escena
-        SceneManager.LoadScene(Menu);
+       SceneManager.LoadScene(nombreEscenaMenu);
     }
 }
