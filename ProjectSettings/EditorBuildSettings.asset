@@ -17,12 +17,12 @@ EditorBuildSettings:
     path: Assets/Level1.unity
     guid: 54ada9bd803809e41979711549d273e5
   - enabled: 1
+    path: Assets/UI Visual/Defeat.unity
+    guid: a4aec508937eb9a469e3f9a97048e961
+  - enabled: 1
     path: Assets/Prototype proyect principal senda Global/Prototype proyect principal
       senda Global/Assets/Levels Game Senda Global/Level2.unity
     guid: 58311bb2d1c37c644a84beb8cfa5df44
-  - enabled: 1
-    path: Assets/UI Visual/Defeat.unity
-    guid: a4aec508937eb9a469e3f9a97048e961
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

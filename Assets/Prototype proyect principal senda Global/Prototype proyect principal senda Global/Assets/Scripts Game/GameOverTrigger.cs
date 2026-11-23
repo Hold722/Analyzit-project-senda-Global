@@ -3,42 +3,27 @@ using UnityEngine.SceneManagement;
 
 public class GameOverTrigger : MonoBehaviour
 {
-    [Header("Configuración de Game Over")]
-    public string defeatSceneName = "Defeat"; // Nombre exacto de tu escena de Game Over
-    public AudioSource gameOverAudioSource;
+    private bool gameOverActivado = false;
 
-    private bool isGameOver = false;
-
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        CheckHazard(collision.gameObject);
+        VerificarJugador(other.gameObject);
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        CheckHazard(other.gameObject);
+        VerificarJugador(collision.gameObject);
     }
 
-    void CheckHazard(GameObject hitObject)
+    private void VerificarJugador(GameObject objeto)
     {
-        if (isGameOver) return;
+        if (gameOverActivado) return;
 
-        if (hitObject.CompareTag("Rio") || hitObject.CompareTag("Enemigo"))
+        if (objeto.CompareTag("Player") ||
+            objeto.transform.root.CompareTag("Player"))
         {
-            isGameOver = true;
-            Time.timeScale = 1f;
-
-            if (gameOverAudioSource != null)
-            {
-                // Mantiene el AudioSource vivo al cambiar de escena para que suene la música de Game Over
-                DontDestroyOnLoad(gameOverAudioSource.gameObject);
-                if (!gameOverAudioSource.isPlaying)
-                {
-                    gameOverAudioSource.Play();
-                }
-            }
-
-            SceneManager.LoadScene(defeatSceneName);
+            gameOverActivado = true;
+            SceneManager.LoadScene("Defeat");
         }
     }
 }

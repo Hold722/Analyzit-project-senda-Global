@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AnimatorPlayer : MonoBehaviour
 {
+    [Header("Animaciones")]
     public Animator animator;
 
     public float walkSpeed = 0.5f;
@@ -9,6 +10,7 @@ public class AnimatorPlayer : MonoBehaviour
     public float jumpForce = 5f;
 
     private Rigidbody rb;
+    private bool estaMuerto = false;
 
     [Header("Sonido Pasos")]
     public AudioSource audioSource;
@@ -25,28 +27,43 @@ public class AnimatorPlayer : MonoBehaviour
 
     void Update()
     {
+        // No reproducir movimientos después de morir
+        if (estaMuerto)
+            return;
+
+        // Salto
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
 
-        bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
-        bool isRunning = Input.GetKey(KeyCode.LeftShift) && isMoving;
+        bool isMoving =
+            Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.D);
 
+        bool isRunning =
+            Input.GetKey(KeyCode.LeftShift) && isMoving;
+
+        // Correr
         if (isRunning)
         {
             animator.SetFloat("Speed", runSpeed);
             ReproducirPasos(tiempoEntrePasos * 0.65f);
         }
+        // Caminar
         else if (isMoving)
         {
             animator.SetFloat("Speed", walkSpeed);
             ReproducirPasos(tiempoEntrePasos);
         }
+        // Quieto
         else
         {
             animator.SetFloat("Speed", 0f);
             timerPasos = 0f;
+
             if (audioSource != null && audioSource.isPlaying)
             {
                 audioSource.Stop();
@@ -56,21 +73,27 @@ public class AnimatorPlayer : MonoBehaviour
 
     void ReproducirPasos(float intervalo)
     {
-        if (audioSource == null) return;
+        if (audioSource == null)
+            return;
 
         timerPasos -= Time.deltaTime;
+
         if (timerPasos <= 0f)
         {
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
             }
+
             timerPasos = intervalo;
         }
     }
 
     void Jump()
     {
+        if (estaMuerto)
+            return;
+
         animator.SetTrigger("Jump");
 
         if (saltoAudioSource != null)
@@ -80,7 +103,29 @@ public class AnimatorPlayer : MonoBehaviour
 
         if (rb != null)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(
+                Vector3.up * jumpForce,
+                ForceMode.Impulse
+            );
+        }
+    }
+
+    // ANIMACIÓN DE MUERTE
+    public void Morir()
+    {
+        if (estaMuerto)
+            return;
+
+        estaMuerto = true;
+
+        animator.SetFloat("Speed", 0f);
+        animator.ResetTrigger("Jump");
+        animator.SetTrigger("Dead");
+
+        // Detener sonido de pasos
+        if (audioSource != null)
+        {
+            audioSource.Stop();
         }
     }
 }

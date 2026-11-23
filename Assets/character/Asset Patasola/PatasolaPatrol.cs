@@ -15,7 +15,7 @@ public class PatasolaPatrol : MonoBehaviour
     [Header("Idle Wait Settings")]
     public float waitTime = 3f;
     private float waitTimer;
-    private bool isWaiting = false;
+    private bool isWaiting = true;
 
     private NavMeshAgent agent;
     private Animator anim;
