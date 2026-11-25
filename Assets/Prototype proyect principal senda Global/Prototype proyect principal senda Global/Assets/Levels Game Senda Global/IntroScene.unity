@@ -211,6 +211,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &553140865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553140867}
+  - component: {fileID: 553140866}
+  m_Layer: 0
+  m_Name: IntroManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &553140866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553140865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b3345da9981d14fa7c0ddfc70802ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonContinuar: {fileID: 1728471946}
+  usarNombreEscena: 1
+  nombreEscenaMenu: Menu
+--- !u!4 &553140867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553140865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 859.9, y: -83.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &682021733
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,37 +396,6 @@ RectTransform:
   m_AnchoredPosition: {x: 188, y: 0}
   m_SizeDelta: {x: -534, y: -670}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &815627834
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 815627836}
-  m_Layer: 0
-  m_Name: ControladorNarrativa
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &815627836
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815627834}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 367, y: 359.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040783786
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,23 +608,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1040783786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 286bcfbc2838ade49abd9fd5bb7e748e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8356f9195a11c434991428e16e4c3d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textoUI: {fileID: 682021734}
-  botonContinuar: {fileID: 1728471946}
-  frases:
-  - En las orillas del rio Madalegna.
-  - "Reune los bocadillos vele\xF1os para calmar la rivera y escapa del mohan."
-  - "Explora: Recorre, senderos y colinas \nRecolecta: acercate a cada bocadillo
-    para completar el objetivo "
-  - "Reune las pira\xF1as en el amazonas para restaurar la armonia y escapa de la
-    patasola."
-  velocidadEscritura: 0.04
-  fuenteEfectos: {fileID: 1040783791}
-  sonidoBoton: {fileID: 8300000, guid: 535338f84b5e4e94a94ea435ba87068d, type: 3}
-  cargarEscenaAlTerminar: 1
-  nombreSiguienteEscena: SampleScene
+  textoPantalla: {fileID: 682021734}
+  lineas:
+  - En las orillas del rio madalegna
+  - "empieza esta aventura y exploraci\xF3n por dos escenarios: el r\xEDo y la regi\xF3n
+    amaz\xF3nica"
+  - "Habla con los NPCs del camino y recolecta los bocadillos y pira\xF1as para ir
+    avanzando."
+  - "Ten mucho cuidado al explorar: el Moh\xE1n y la Patasola acechan en el agua
+    y en la selva."
+  - "\xBFListo para recorrer ambos lugares y descubrir qu\xE9 te espera?"
+  tiempoEntreLetras: 0.05
+  pausaEntreLineas: 2
+  botonContinuar: {fileID: 1728471944}
+  nombreEscenaMenu: Menu
 --- !u!1 &1698613145
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +787,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 286bcfbc2838ade49abd9fd5bb7e748e, type: 3}
+      - m_Target: {fileID: 11500000, guid: 64b3345da9981d14fa7c0ddfc70802ed, type: 3}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
         m_Mode: 1
@@ -1163,4 +1179,4 @@ SceneRoots:
   - {fileID: 1937655686}
   - {fileID: 1040783787}
   - {fileID: 1698613148}
-  - {fileID: 815627836}
+  - {fileID: 553140867}
