@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text Bocadillos;
     public TMP_Text CoinsText;
 
-    private int SandwichCounts = 0;
-    private int monedas = 0;
+    public int SandwichCounts = 0;
+    public int monedas = 0;
 
     public GameObject Redwarpanel;
 
